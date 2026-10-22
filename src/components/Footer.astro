@@ -1,0 +1,15 @@
+---
+import { site, footer, industries } from '../data/site';
+const cols = [['Explore', footer.explore], ['Company', footer.company]] as const;
+---
+<footer class="footer">
+  <div class="wrap grid">
+    <div><p><strong>Coditation</strong></p><p>{site.address}</p></div>
+    <div><h3>Industries</h3><ul>{industries.map((i) => <li><a href={i.href}>{i.name}</a></li>)}</ul></div>
+    {cols.map(([t, links]) => (<div><h3>{t}</h3><ul>{links.map(([n, h]) => <li><a href={h}>{n}</a></li>)}</ul></div>))}
+  </div>
+  <div class="wrap row">
+    <span>{footer.legal.map(([n, h]) => <a href={h}>{n}</a>)}</span>
+    <span>{footer.social.map(([n, h]) => <a href={h} rel="noopener">{n}</a>)}</span>
+  </div>
+</footer>

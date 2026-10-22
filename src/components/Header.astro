@@ -1,0 +1,25 @@
+---
+import { site, banner, industries, capabilities, nav } from '../data/site';
+const menus = [
+  { label: 'Industries', items: industries },
+  { label: 'Capabilities', items: capabilities },
+  { label: 'Company', items: nav.company },
+];
+---
+<div class="banner"><a href={banner.href}>{banner.text} — Join us!</a></div>
+<header class="header">
+  <a href="/" class="logo"><img src={site.logo} alt="Coditation logo" height="32" /></a>
+  <nav aria-label="Main">
+    {menus.map((m) => (
+      <details class="menu">
+        <summary>{m.label}</summary>
+        <ul>
+          {m.items.map((i) => (<li><a href={i.href}><strong>{i.name}</strong><span>{i.blurb}</span></a></li>))}
+          <li><a href={site.playbook}><strong>Gen AI: Playbook</strong><span>Download</span></a></li>
+        </ul>
+      </details>
+    ))}
+    {nav.links.map((l) => <a href={l.href}>{l.name}</a>)}
+  </nav>
+  <a class="btn" href={nav.contact}>Get In Touch</a>
+</header>

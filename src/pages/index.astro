@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, hero, sections, tech, testimonials, news, nav } from '../data/site';
+---
+<Base>
+  <section class="hero wrap">
+    <h1>{hero.title}</h1>
+    <ul class="tags">{hero.tags.map((t) => <li>{t}</li>)}</ul>
+    <p class="layers">{hero.layers.join(' · ')}</p>
+  </section>
+
+  {sections.map((s, i) => (
+    <section class={`industry wrap ${i % 2 ? 'flip' : ''}`}>
+      <div>
+        <p class="label">{s.label}</p>
+        <h2>{s.title}</h2>
+        {s.body.map((p) => <p>{p}</p>)}
+        <dl class="stats">{s.stats.map(([n, l]) => (<div><dt>{n}</dt><dd>{l}</dd></div>))}</dl>
+        <a class="btn" href={s.href}>{s.cta}</a>
+      </div>
+      <img src={s.img} alt={s.label} loading="lazy" />
+    </section>
+  ))}
+
+  <section class="wrap tech">
+    <h2>Built on Proven Technologies</h2>
+    <p>We use leading platforms to build and scale systems that perform reliably in production.</p>
+    <ul class="chips">{tech.map((t) => <li>{t}</li>)}</ul>
+  </section>
+
+  <section class="cta"><div class="wrap">
+    <h2>Let’s Build What Moves the Business Forward.</h2>
+    <p>Whether you’re modernizing platforms, scaling AI, or building new digital products, we’ll help you get from concept to measurable impact.</p>
+    <a class="btn" href={site.booking}>Start a Conversation</a>
+  </div></section>
+
+  <section class="wrap">
+    <h2>Real Stories, Real Results &amp; Real Impact</h2>
+    <div class="quotes">
+      {testimonials.map((t) => (
+        <figure>
+          <h3>{t.title}</h3>
+          <blockquote>{t.quote}</blockquote>
+          <figcaption><img src={t.img} alt={t.who} width="48" height="48" loading="lazy" /><span><strong>{t.who}</strong><br />{t.role}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Coditation On The Move</h2>
+    <div class="news">
+      {news.map((n) => (<a href={n.href}><small>{n.tag}</small><h3>{n.title}</h3><p>{n.text}</p></a>))}
+    </div>
+    <p class="playbook">A hands-on playbook for deploying Gen AI in production. <a class="btn" href={site.playbook}>Download</a></p>
+  </section>
+
+  <section class="cta"><div class="wrap">
+    <h2>No Hype. Just Systems That Deliver Real Outcomes at Scale.</h2>
+    <a class="btn" href={nav.contact}>Discuss Your Use Case</a>
+  </div></section>
+</Base>
